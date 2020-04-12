@@ -1,0 +1,45 @@
+{
+	"name": "zk-zero-yaml-helper",
+	"displayName": "ZK-zero Yaml Helper",
+	"description": "公司游戏项目辅助工具 .YAML文件可视化处理",
+	"version": "0.0.1",
+	"publisher": "liudewei",
+	"engines": {
+		"vscode": "^1.44.0"
+	},
+	"icon": "./resources/logo.png",
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCustomEditor:yaml_helper_editor"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"customEditors": [
+			{
+				"viewType": "yaml_helper_editor",
+				"displayName": "YAML HELPER",
+				"selector": [
+					{
+						"filenamePattern": "*.yaml"
+					}
+				],
+				"priority": "option"
+			}
+		]
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.44.0",
+		"eslint": "^6.8.0"
+	},
+	"dependencies": {
+		"js-yaml": "^3.13.1",
+		"path": "^0.12.7"
+	}
+}

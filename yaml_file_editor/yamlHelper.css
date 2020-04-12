@@ -1,0 +1,35 @@
+body {
+    background-color:var(--vscode-menu-background);
+    padding: 0;
+    margin: 0;
+}
+#item {
+    background-color:var(--vscode-list-inactiveSelectionBackground);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 10px;
+}
+input {
+    background-color: var(--vscode-inputValidation-warningBackground);
+    border: none;
+    color: var(--vscode-tokenColors-foreground);
+}
+#BottomButton{
+    background-color:cadetblue;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 25px;
+    margin: 5px 5px 0 0;
+    color: white;
+}
+#BottomButton:hover{
+    background-color:darkcyan;
+}
+#BottomButton:active{
+    background-color:cadetblue;
+}
+p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
