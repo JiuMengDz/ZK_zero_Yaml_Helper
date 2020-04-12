@@ -13,6 +13,7 @@ input {
     background-color: var(--vscode-inputValidation-warningBackground);
     border: none;
     color: var(--vscode-tokenColors-foreground);
+    margin-left: 10px;
 }
 #BottomButton{
     background-color:cadetblue;

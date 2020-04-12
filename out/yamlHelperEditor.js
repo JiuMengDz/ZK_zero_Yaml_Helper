@@ -54,6 +54,8 @@ class YamlHelperEditor {
                 case "delete":
                     console.log("delete");
                     break;
+                case "open_file":
+                    break;
                 default:
                     console.log("no demand");
             }

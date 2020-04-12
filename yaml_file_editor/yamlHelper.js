@@ -4,6 +4,10 @@ function init_page() {
     // @ts-ignore
     const vscode = acquireVsCodeApi();
 
+    vscode.postMessage({
+        command: "open_file"
+    });
+
     window.addEventListener("message", event => {
         let data = event.data;
         switch (data.command) {
@@ -29,7 +33,7 @@ function init_page() {
 
 function get_inner_html(yaml_obj, space = 0) {
     let div = document.createElement("div")
-    var space = space + 10;
+    var space = space + 20;
     for (var key in yaml_obj) {
         let obj = yaml_obj[key];
         let p = document.createElement("p");
@@ -54,6 +58,9 @@ function createDocument(name, yaml_obj) {
 
     let input_text = document.createElement("input");
     input_text.value = name;
+    input_text.style.marginLeft = "0px";
+    input_text.style.fontSize = "20px";
+    input_text.style.fontWeight = "bolder";
     item_div.appendChild(input_text);
 
     let item_div2 = document.createElement("div");
@@ -61,7 +68,7 @@ function createDocument(name, yaml_obj) {
         let obj = yaml_obj[pro_name]
         let p = document.createElement("p");
         p.innerText = pro_name;
-
+        
         if (typeof (obj) == "string") {
             let input_text = document.createElement("input");
             input_text.value = obj;
