@@ -3,7 +3,7 @@
 	"displayName": "ZK-zero Yaml Helper",
 	"description": "公司游戏项目辅助工具 .YAML文件可视化处理",
 	"version": "0.0.1",
-	"publisher": "liudewei",
+	"publisher": "JiuMengDz",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
