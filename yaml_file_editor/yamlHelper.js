@@ -1,8 +1,8 @@
 const body_container = document.querySelector("body");
+// @ts-ignore
+const vscode = acquireVsCodeApi();
 
 function init_page() {
-    // @ts-ignore
-    const vscode = acquireVsCodeApi();
 
     vscode.postMessage({
         command: "open_file"
@@ -12,11 +12,9 @@ function init_page() {
         let data = event.data;
         switch (data.command) {
             case "update":
-                body_container.innerHTML = "";
                 let yaml_obj = data.yaml_content;
-                for (var name in yaml_obj) {
-                    body_container.appendChild(createDocument(name, yaml_obj[name]));
-                }
+                _updateContent(yaml_obj);
+                vscode.setState({yaml_obj});
                 break;
             default:
         }
@@ -29,6 +27,13 @@ function init_page() {
         // let item = document.querySelector("body");
         // item.appendChild(createDocument("new"));
     })
+}
+
+function _updateContent(yaml_obj){
+    body_container.innerHTML = "";
+    for (var name in yaml_obj) {
+        body_container.appendChild(createDocument(name, yaml_obj[name]));
+    }
 }
 
 function get_inner_html(yaml_obj, space = 0) {
@@ -53,14 +58,12 @@ function get_inner_html(yaml_obj, space = 0) {
 }
 
 function createDocument(name, yaml_obj) {
+
     let item_div = document.createElement("div");
     item_div.id = "item";
 
-    let input_text = document.createElement("input");
-    input_text.value = name;
-    input_text.style.marginLeft = "0px";
-    input_text.style.fontSize = "20px";
-    input_text.style.fontWeight = "bolder";
+    let input_text = document.createElement("h2");
+    input_text.innerText = name;
     item_div.appendChild(input_text);
 
     let item_div2 = document.createElement("div");
@@ -84,3 +87,8 @@ function createDocument(name, yaml_obj) {
 }
 
 init_page();
+
+const state = vscode.getState();
+if (state) {
+    _updateContent(state.yaml_obj);
+}
