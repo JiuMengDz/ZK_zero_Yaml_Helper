@@ -10,7 +10,7 @@ body {
     margin: 10px 10px;
 }
 input {
-    background-color: var(--vscode-inputValidation-warningBackground);
+    background-color: var(--vscode-input-background);
     border: none;
     color: var(--vscode-tokenColors-foreground);
     margin-left: 10px;
@@ -36,4 +36,9 @@ p {
 }
 h1,h2,h3{
     margin: 0;
+}
+
+#value {
+    color: green;
+    margin-left: 10px;
 }

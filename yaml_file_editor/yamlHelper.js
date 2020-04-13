@@ -48,8 +48,9 @@ function get_inner_html(yaml_obj, space = 0) {
         if (typeof (obj) == "object") {
             p.appendChild(get_inner_html(obj, space));
         } else {
-            let input_text = document.createElement("input");
-            input_text.value = obj;
+            let input_text = document.createElement("span");
+            input_text.innerText = obj;
+            input_text.id = "value";
             p.appendChild(input_text);
         }
         div.appendChild(p);
@@ -73,8 +74,9 @@ function createDocument(name, yaml_obj) {
         p.innerText = pro_name;
         
         if (typeof (obj) == "string") {
-            let input_text = document.createElement("input");
-            input_text.value = obj;
+            let input_text = document.createElement("span");
+            input_text.innerText = obj;
+            input_text.id = "value";
             p.appendChild(input_text);
         } else {
             p.appendChild(get_inner_html(obj));
