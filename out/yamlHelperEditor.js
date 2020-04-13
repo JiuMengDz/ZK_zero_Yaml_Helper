@@ -29,14 +29,19 @@ class YamlHelperEditor {
 
         function updateWebView() {
             let text = document.getText();
-            let yaml_obj = yaml.load(text);
+            try {
+                let yaml_obj = yaml.load(text);
+                console.log(yaml_obj);
+                webviewPanel.webview.postMessage({
+                    command: "update",
+                    yaml_content: yaml_obj
+                });
+            } catch (error) {
+                vscode.window.showErrorMessage(error.toString());
+            }
             // console.log(yaml.dump(yaml_obj, {
             //     indent: 4
             // }));
-            webviewPanel.webview.postMessage({
-                command: "update",
-                yaml_content: yaml_obj
-            });
         }
 
         const changeTextDocument = vscode.workspace.onDidChangeTextDocument((e) => {

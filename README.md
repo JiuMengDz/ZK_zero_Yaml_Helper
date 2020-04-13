@@ -13,6 +13,10 @@
 | `ABILITY` | User Experience Change |
 |   `UX`    | Change of ability      |
 
+### v 0.0.4 2020-4-13 [Next Release]
+- `[ABILITY]` yaml文件同级属性名存在同名的错误提示
+- `[ABILITY]` [no finish] yaml对象遍历的顺序和文本中的内容顺序不一致
+
 ### v 0.0.3 2020-4-13
 - `[ABILITY]` 页面重新激活的内容状态恢复
 - `[UX]` 表格标题小调整
