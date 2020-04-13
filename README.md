@@ -15,7 +15,8 @@
 
 ### v 0.0.4 2020-4-13 [Next Release]
 - `[ABILITY]` yaml文件同级属性名存在同名的错误提示
-- `[ABILITY]` [no finish] yaml对象遍历的顺序和文本中的内容顺序不一致
+- `[ABILITY]` 增加excel文件配置路径
+- `[ABILITY]` 点击excel表格名称即可跳转excel表格文件
 - `[UX]` 改变整体样式
 
 ### v 0.0.3 2020-4-13
