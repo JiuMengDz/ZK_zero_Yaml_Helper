@@ -13,9 +13,12 @@
 | `ABILITY` | User Experience Change |
 |   `UX`    | Change of ability      |
 
-### v 0.0.2 2020-4-13
+### v 0.0.3 2020-4-13
 - `[ABILITY]` 页面重新激活的内容状态恢复
 - `[UX]` 表格标题小调整
+
+### v 0.0.2 2020-4-13
+- Add License
 
 ### v 0.0.1 2020-4-13
 - Initial release.
