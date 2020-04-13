@@ -1,10 +1,11 @@
 const vscode = require('vscode');
 const path = require('path')
 const yaml = require('js-yaml')
+const opn = require('opn')
 
 class YamlHelperEditor {
-    static s_register(context) {
-        let provider = new YamlHelperEditor(context);
+    static s_register(context, excel_path) {
+        let provider = new YamlHelperEditor(context, excel_path);
         let provider_dispose = vscode.window.registerCustomEditorProvider("yaml_helper_editor", provider)
         return provider_dispose;
     }
@@ -12,8 +13,9 @@ class YamlHelperEditor {
     /**
      * @param  {vscode.ExtensionContext} context
      */
-    constructor(context) {
+    constructor(context, excel_path) {
         this.context = context;
+        this.excel_path = excel_path;
     }
 
     /**
@@ -60,6 +62,12 @@ class YamlHelperEditor {
                     console.log("delete");
                     break;
                 case "open_file":
+                    let file_name = e.file_name;
+                    try{
+                        opn(path.join(this.excel_path, file_name));
+                    }catch(error){
+
+                    }
                     break;
                 default:
                     console.log("no demand");

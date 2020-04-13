@@ -3,11 +3,6 @@ const body_container = document.querySelector("body");
 const vscode = acquireVsCodeApi();
 
 function init_page() {
-
-    vscode.postMessage({
-        command: "open_file"
-    });
-
     window.addEventListener("message", event => {
         let data = event.data;
         switch (data.command) {
@@ -36,24 +31,36 @@ function _updateContent(yaml_obj){
     }
 }
 
-function get_inner_html(yaml_obj, space = 0) {
+function get_inner_html(yaml_obj, space = 0, is_sheet = false) {
     let div = document.createElement("div")
     var space = space + 20;
+    div.style.marginLeft = space + 'px';
     for (var key in yaml_obj) {
         let obj = yaml_obj[key];
-        let p = document.createElement("p");
-        p.innerText = key;
-        p.style.marginLeft = space + "px";
 
-        if (typeof (obj) == "object") {
-            p.appendChild(get_inner_html(obj, space));
-        } else {
-            let input_text = document.createElement("span");
-            input_text.innerText = obj;
-            input_text.id = "value";
-            p.appendChild(input_text);
+        if(is_sheet){
+            let button = _createButton(key, (content)=>{
+                vscode.postMessage({
+                    command: 'open_file',
+                    file_name: content
+                });
+            });
+            div.appendChild(button);
+        }else{
+            div.appendChild(_createSpan(key));
         }
-        div.appendChild(p);
+        
+        if (typeof (obj) == "object") {
+            if(is_sheet){
+                let span = _createSpan(obj.toString(), "value");
+                div.appendChild(span);
+            }
+            else{
+                div.appendChild(get_inner_html(obj, space, is_sheet));
+            }
+        } else {
+            div.appendChild(_createSpan(obj, "value"));
+        }
     }
     return div;
 }
@@ -79,13 +86,35 @@ function createDocument(name, yaml_obj) {
             input_text.id = "value";
             p.appendChild(input_text);
         } else {
-            p.appendChild(get_inner_html(obj));
+            p.appendChild(get_inner_html(obj, 0, pro_name == ".sheets"));
         }
 
         item_div2.appendChild(p);
     }
     item_div.appendChild(item_div2);
     return item_div;
+}
+
+
+function _createButton(content, cb){
+    let button = document.createElement("button");
+    button.innerText = content;
+
+    if(cb){
+        console.log(content);
+        button.addEventListener('click', ()=>{
+            cb(content);
+        });
+    }
+
+    return button;
+}
+
+function _createSpan(content, id = null){
+    let span = document.createElement("span");
+    span.id = id;
+    span.innerText = content;
+    return span;
 }
 
 init_page();

@@ -16,6 +16,17 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration":[
+			{
+				"title": "YamlHelper",
+				"properties": {
+					"YamlHelper.excel_path":{
+						"type": "string",
+						"description": "excels path"
+					}
+				}
+			}
+		],
 		"customEditors": [
 			{
 				"viewType": "yaml_helper_editor",
@@ -40,6 +51,7 @@
 	},
 	"dependencies": {
 		"js-yaml": "^3.13.1",
+		"opn": "^6.0.0",
 		"path": "^0.12.7"
 	}
 }
